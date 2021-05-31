@@ -117,14 +117,21 @@ public class SalesRecordAdapter extends RecyclerView.Adapter<SalesRecordAdapter.
         holder.net_gross.setText(indonesianExchangeRate.format(Double.parseDouble(salesRecord.getNet_gross().toString())));
 
         if(salesRecord.getNet_gross() < 0) {
-            holder.net_gross.setTextColor(Color.parseColor("#E83737"));
-            holder.ic_net_gross.setImageResource(R.drawable.ic_arrow_down);
+            holder.net_gross.setTextColor(Color.parseColor("#C5221F"));
+            holder.container_logo.setCardBackgroundColor(Color.parseColor("#FCE8E6"));
+            holder.logo_info.setImageResource(R.drawable.ic_baseline_arrow_downward);
+            holder.logo_info.setColorFilter(Color.parseColor("#C5221F"));
+
         }else if(salesRecord.getNet_gross() > 0){
             holder.net_gross.setTextColor(Color.parseColor("#098C0A"));
-            holder.ic_net_gross.setImageResource(R.drawable.ic_arrow_up);
+            holder.container_logo.setCardBackgroundColor(Color.parseColor("#E6F4EA"));
+            holder.logo_info.setImageResource(R.drawable.ic_baseline_arrow_upward);
+            holder.logo_info.setColorFilter(Color.parseColor("#098C0A"));
         } else {
-            holder.net_gross.setTextColor(Color.parseColor("#313131"));
-            holder.ic_net_gross.setVisibility(View.GONE);
+            holder.net_gross.setTextColor(Color.parseColor("#0080FF"));
+            holder.container_logo.setCardBackgroundColor(Color.parseColor("#E8F0FE"));
+            holder.logo_info.setImageResource(R.drawable.ic_baseline_unfold_less);
+            holder.logo_info.setColorFilter(Color.parseColor("#0080FF"));
         }
     }
 
@@ -135,8 +142,9 @@ public class SalesRecordAdapter extends RecyclerView.Adapter<SalesRecordAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView day, date, gross_provit, expenditure, net_gross;
-        public CardView cardView;
-        public ImageView ic_net_gross;
+        public CardView cardView, container_logo;
+        public ImageView logo_info;
+        public View divider;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -146,7 +154,9 @@ public class SalesRecordAdapter extends RecyclerView.Adapter<SalesRecordAdapter.
             expenditure     = itemView.findViewById(R.id.txt_expenditure);
             net_gross       = itemView.findViewById(R.id.txt_net_gross);
             cardView        = itemView.findViewById(R.id.card_sales_record);
-            ic_net_gross    = itemView.findViewById(R.id.icon_net_gross);
+            logo_info       = itemView.findViewById(R.id.logo_info);
+            container_logo  = itemView.findViewById(R.id.container_logo);
+            divider         = itemView.findViewById(R.id.divider);
         }
     }
 }
